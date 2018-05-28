@@ -23,7 +23,7 @@ Please send me the source code you designed.*/
 public class Assignment_Week_1 {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
 		double test1 = 75 * 0.10;
 		double test2 = 95 * 0.20;
 		double test3 = 85 * 0.25;
