@@ -1,0 +1,124 @@
+/*
+ * Implement a queue class (for characters). You can use an array or a linked list.
+		(a) Build a test program that stores the alphabet using your queue.
+		(b) You can use enqueue() or dequeue() methods. In dequeue() method, you need to be able throw an exception where there is nothing to dequeue (e.g., throw new RuntimeException("Queue underflow");).
+		(c) Limit the size of the queue so that you can only store up to 10 characters. If you enter more than 10 characters, your test program should show an error message.
+ */
+import java.util.*;
+
+public class Assignment_Week_7b {
+
+	public static void main(String[] args) {
+		
+		String QueAdd, Decision; 
+		int pos, count = 0;
+		Scanner scan = new Scanner(System.in);
+
+		
+		System.out.println("Please enter a letter from the alphabet to the Queue:");
+		QueAdd = scan.next();
+		queueingAlpha que = new queueingAlpha();
+		que.addQue(QueAdd);
+		QueAdd = "";
+		
+		System.out.println("The current queue is: " + que.Alpha);
+		
+
+		while (count == 0)
+		{
+		System.out.println("Would you like to add another letter to the queue (Y/N/Finish)?");
+		Decision = scan.next();
+		
+		if (Decision.equals("Y") || Decision.equals("y"))
+		{
+			System.out.println("Please enter a letter from the alphabet to the Queue:");
+			QueAdd = scan.next();
+			que.addQue(QueAdd);
+			QueAdd = "";
+			count = 0;
+		} else if (Decision.equals("N") || Decision.equals("n"))
+			{
+				System.out.println("Would you like to remove a letter from the queue (Y/N/)?");
+				System.out.println("Rhe current queue is: " + que.Alpha);
+				Decision = scan.next();
+				
+				if (Decision.equals("Y") || Decision.equals("y"))
+				{
+					System.out.println("Please enter the position of the letter to remove from the Queue:");
+					pos = scan.nextInt();
+					que.removePositiontQue(pos);
+					QueAdd = "";
+					count = 0;
+				} else if (Decision.equals("N") || Decision.equals("n"))
+				{
+					System.out.println("Thank you for your Input the current queue is: " + que.Alpha);
+					count = 0;
+				}
+						
+			}
+		else if (Decision.equals("Finish") || Decision.equals("finish"))
+		{
+			System.out.println("Thank you for your Input the current queue is: " + que.Alpha);
+			count = 1;
+		}
+		
+		}
+		
+}
+		
+		
+
+	
+	public static class queueingAlpha {
+		
+		Queue Alpha = new LinkedList();
+		int maxQue = 10;
+
+		public void addQue (String a)
+		{
+			Alpha.add(a);
+			if (Alpha.size() >= maxQue)
+			{	Alpha.remove(a);
+				System.out.println("Error: No more elements could be added to the queue");
+			} else 
+			{
+				System.out.println("You have successfully added an element to the queue");
+			}
+			
+		}
+		
+		public void removeFirstQue ()
+		{
+			Alpha.remove();
+			
+			if (Alpha.isEmpty())
+			{
+				RuntimeException empty  = new RuntimeException ("Queue underflow");
+				throw empty;
+			} else 
+			{
+				System.out.println("You have successfully removed an element to the queue");
+			}
+				
+		}
+		public void removePositiontQue (int a )
+		{	
+			int position = a;
+			Alpha.remove(position);	
+			
+			if (Alpha.isEmpty())
+			{
+				RuntimeException empty  = new RuntimeException ("Queue underflow");
+				throw empty;
+			} 	 
+		}		
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+}
